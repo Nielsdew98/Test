@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Category;
+use App\Models\Recipe;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        //step 1 create categories
+        $categories = Category::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        for ($i = 0; $i < 5; $i++){
+          Recipe::factory()
+              ->hasIngredients(random_int(0,10))
+              ->count(100)
+              ->create([
+                  'category_id' => fake()->randomElement($categories)->id
+              ]);
+        }
     }
 }
