@@ -18,9 +18,11 @@ class RecipeController extends Controller
             $query = $query->search($search);
         }
 
-        if($category = $request->get('category')){
-            $query = $query->whereHas('category', function ($q) use ($category){
-                $q->where('name', 'LIKE', "%$category%");
+        if($categories = $request->get('category')){
+            $categories = explode(",", $categories);
+
+            $query = $query->whereHas('category', function ($q) use ($categories){
+                $q->whereIn('name',$categories);
             });
         }
 
