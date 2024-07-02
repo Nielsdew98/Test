@@ -11,9 +11,14 @@ class Recipe extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
+
     public function ingredients(){
         return $this->hasMany(Ingredient::class);
+    }
+
+    public function scopeSearch($query, $search){
+        return $query->where(['name', 'LIKE', "%$search%"]);
     }
 }
