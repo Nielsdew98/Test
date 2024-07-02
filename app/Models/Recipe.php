@@ -19,6 +19,6 @@ class Recipe extends Model
     }
 
     public function scopeSearch($query, $search){
-        return $query->where(['name', 'LIKE', "%$search%"]);
+        return $query->where('name', 'LIKE', "%$search%");
     }
 }
