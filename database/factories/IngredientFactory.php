@@ -21,7 +21,7 @@ class IngredientFactory extends Factory
             //
             'recipe_id' => Recipe::factory(),
             'name' => $this->faker->word(),
-            'amount' => random_int(0,500),
+            'amount' => random_int(1,500),
             'unit' => $this->faker->word()
         ];
     }
