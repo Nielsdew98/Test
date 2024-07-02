@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++){
           Recipe::factory()
-              ->hasIngredients(random_int(0,10))
+              ->hasIngredients(random_int(1,10))
               ->count(100)
               ->create([
                   'category_id' => fake()->randomElement($categories)->id
