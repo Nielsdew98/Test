@@ -21,4 +21,8 @@ class Recipe extends Model
     public function scopeSearch($query, $search){
         return $query->where('name', 'LIKE', "%$search%");
     }
+
+    public function scopeVisible($query){
+        return $query->where('is_hidden', false);
+    }
 }
