@@ -45,7 +45,19 @@
                         </li>
                     </ol>
                 </div>
-                <div class="w-full h-px bg-light-gray mx-auto mt-8"></div>
+                <div class="mt-8">
+                    <h3 class="font-fancy text-3xl text-nutmeg">Recipes you may like</h3>
+                    <ul
+                        class="mt-4 ml-6"
+                    >
+                        @foreach($suggested as $suggestedRecipe)
+                            <li class="pl-4">
+                                <a href="{{URL::route('recipe.show', $suggestedRecipe)}}" class="block antialiased font-sans text-xs font-semibold text-blue-gray-600">{{$suggestedRecipe->name}}</a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
             </div>
         </article>
 @endsection
