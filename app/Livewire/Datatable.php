@@ -4,14 +4,17 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Recipe;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Datatable extends Component
 {
     use WithPagination;
+    #[Url]
     public $search = '';
 
+    #[Url]
     public $categories = [];
     public function updatedSearch()
     {
