@@ -21,6 +21,10 @@ class Recipe extends Model
 
     public function scopeSearch($query, $search)
     {
+        if (empty($search)) {
+            return $query;
+        }
+
         return $query
             ->where('name', 'LIKE', "%$search%")
             ->orWhereHas('ingredients', function ($query) use ($search) {
@@ -40,7 +44,7 @@ class Recipe extends Model
         }
 
         return $query->whereHas('category', function ($q) use ($categories) {
-            $q->whereIn('id', $categories);
+            $q->whereIn('name', $categories);
         });
     }
 }

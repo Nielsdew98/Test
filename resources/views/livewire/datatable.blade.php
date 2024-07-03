@@ -12,7 +12,7 @@
                                   autofill:pb-2"
                             wire:model.change="categories">
                         @foreach($filterCategories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            <option value="{{$category->name}}">{{$category->name}}</option>
                         @endforeach
                     </select>
                     <label class="absolute top-0 start-0 p-4 h-full truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none

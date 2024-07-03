@@ -8,5 +8,12 @@ Er zit nog een aparte markdown file in de repository namelijk (analyse.md). Hier
 - git clone
 - composer install
 - copy .env.example to .env
+- change SESSION_LIFETIME to 1440
 - npm install
 - npm run dev or php artisan serve
+
+### api call
+- reachable at: {{projectUrl}}/api/recipes
+- if needed query parameters can be added
+  - search=stringtosearch
+  - categories=category1,category2 
