@@ -22,7 +22,7 @@ class RecipeFactory extends Factory
             'category_id' => Category::factory(),
             'name' => $this->faker->name(),
             'instructions' => $this->faker->text(),
-            'duration_minutes' => random_int(0,200),
+            'duration_minutes' => random_int(0, 200),
             'is_hidden' => $this->faker->boolean(),
         ];
     }

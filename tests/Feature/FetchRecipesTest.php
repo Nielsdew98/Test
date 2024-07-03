@@ -12,8 +12,11 @@ use Tests\TestCase;
 class FetchRecipesTest extends TestCase
 {
     use RefreshDatabase;
+
     private Category $category;
+
     private Recipe $recipe;
+
     private Ingredient $ingredient;
 
     public function setUp(): void
@@ -21,7 +24,7 @@ class FetchRecipesTest extends TestCase
         parent::setUp();
 
         //create category
-       $this->category =  Category::create(['name' => fake()->name]);
+        $this->category = Category::create(['name' => fake()->name]);
 
         //create recipe
         $this->recipe = Recipe::factory()->recycle($this->category)->create(['is_hidden' => false]);
@@ -35,7 +38,7 @@ class FetchRecipesTest extends TestCase
     {
 
         $expectedResponse = json_encode([
-            'recipes' => [RecipeResource::make($this->recipe)]
+            'recipes' => [RecipeResource::make($this->recipe)],
         ]);
 
         $response = $this->json('GET', '/api/recipes');

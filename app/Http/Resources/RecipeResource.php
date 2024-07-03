@@ -19,7 +19,7 @@ class RecipeResource extends JsonResource
             'category' => CategoryResource::make($this->category),
             'instructions' => $this->instructions,
             'duration' => $this->duration_minutes,
-            'ingredients' => IngredientResource::collection($this->ingredients)
+            'ingredients' => IngredientResource::collection($this->ingredients),
         ];
     }
 }

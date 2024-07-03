@@ -12,21 +12,8 @@ class RecipeController extends Controller
 {
     public function recipes(Request $request)
     {
-        $query = Recipe::query();
 
-        if ($search = $request->get('search')){
-            $query = $query->search($search);
-        }
-
-        if($categories = $request->get('category')){
-            $categories = explode(",", $categories);
-
-            $query = $query->whereHas('category', function ($q) use ($categories){
-                $q->whereIn('name',$categories);
-            });
-        }
-
-        $recipes = $query->where('is_hidden',false)->get();
+        $recipes = Recipe::visible()->forCategories($request->get('categories'))->search($request->get('search'))->get();
 
         return new JsonResponse(['recipes' => RecipeResource::collection($recipes)]);
     }

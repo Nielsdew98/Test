@@ -7,6 +7,7 @@ use Livewire\Component;
 class IngredientsChanger extends Component
 {
     public $ingredients = [];
+
     public $servings = 2;
 
     public function render()
@@ -38,19 +39,22 @@ class IngredientsChanger extends Component
         </div>
         HTML;
     }
+
     public function updateIngredients()
     {
         foreach ($this->ingredients as &$ingredient) {
             $ingredient['amount'] = $ingredient['amount'] * ($this->servings / 2);
         }
     }
+
     public function decrementServings()
     {
         if ($this->servings > 1) {
-            --$this->servings;
+            $this->servings--;
             $this->updateIngredients();
         }
     }
+
     public function incrementServings()
     {
         $this->servings++;

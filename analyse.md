@@ -1,0 +1,45 @@
+#voorstudie
+- 3 models
+    - Categorieën
+        - Gelinkt aan recepten via one to many
+    - Recepten
+        - Gelinkt aan Category via many to one
+        - bestaat uit
+            - tekstuele instructie (text)
+            - duurtijd in minuten (int)
+            - is_hidden (boolean)
+    - Ingredienten
+        - Gelinkt aan recept via One to one relatie
+        - Altijd voor 2 personen
+- Werkwijze
+    - API
+        - starten met maken modellen - seeders - fakers
+            - belangrijk bij fakers houd rekening met grote datasets (for loops)
+        - Starten met maken van resources/spatie data
+            - Begin met de /api/recipes route met query filters Search & Category
+            - Return Json response with recipes
+        - Eerst dom alles maken dan verbeteren
+            - Maak een querybuilder class om de recepten te filteren want deze builder kan hergebruikt voor zowel api als front-end
+        - Test schrijven via phpunit of pest
+    - Front-end gedeelte
+        - Via Inertia/Vue
+            - overzichtpagina is een simpele table component met data
+                - Voeg searchbar en dropdown voor categoriefilter toe
+            - Detailpagina
+                - Overview van recept met ingredienten
+                    - ingredienten wordt een apart component waar je aantal kan wijzigen
+                        - via vue kunnen we dit makkelijk reactive herberekenen en tonen
+                - State van voorgestelde recepten kon opgeslagen worden via pinia
+            - 2 pagina's testen kan via laravel dusk testen met de inertia plugin om inertia pagina's te testen
+        - Via livewire
+            - Component maken voor het herberekenen van de ingrediënten per persoon
+                - via volgende berekening= ingredient * (x/2)
+            - Component met datatable
+            - die filtert en search via url attributes
+
+##Opmerkingen
+- Ik ben begonnen met een simpele text voor de instructies
+    - Als ik tijd over had zou ik een json field hiervan maken met eventuele oplijsting van de stappen nu is het zin per zin
+- Ook heb ik de eerste 6u alles zo dom mogelijk gemaakt
+    - Na alles zo dom mogelijk te maken beginnen ik te kijken wat er herbruikt kan worden en wat verbeterd kan worden.
+- Ik heb niet gevonden hoe ik de updated ingredient amount kon testen wel heb ik de servings van livewire kunnen testen

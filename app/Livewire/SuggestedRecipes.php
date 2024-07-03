@@ -10,11 +10,13 @@ class SuggestedRecipes extends Component
 {
     #[Session]
     public $suggested = [];
+
     public $recipe;
 
     public function render()
     {
         $this->getSuggestedRecipes();
+
         return <<<'HTML'
         <div>
 
@@ -22,7 +24,8 @@ class SuggestedRecipes extends Component
         HTML;
     }
 
-    public function getSuggestedRecipes(){
+    public function getSuggestedRecipes()
+    {
         if (count($this->suggested) === 0) {
             $this->suggested = Recipe::visible()->where('id', '!=', $this->recipe->id)->forCategories([$this->recipe->category->id])->get()->random(4);
         }

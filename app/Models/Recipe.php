@@ -14,11 +14,13 @@ class Recipe extends Model
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
-    public function ingredients(){
+    public function ingredients()
+    {
         return $this->hasMany(Ingredient::class);
     }
 
-    public function scopeSearch($query, $search){
+    public function scopeSearch($query, $search)
+    {
         return $query
             ->where('name', 'LIKE', "%$search%")
             ->orWhereHas('ingredients', function ($query) use ($search) {
@@ -26,17 +28,19 @@ class Recipe extends Model
             });
     }
 
-    public function scopeVisible($query){
+    public function scopeVisible($query)
+    {
         return $query->where('is_hidden', false);
     }
 
-    public function scopeForCategories($query, $categories){
-       if (count($categories) === 0){
-           return $query;
-       }
+    public function scopeForCategories($query, ?array $categories)
+    {
+        if (count($categories) === 0) {
+            return $query;
+        }
 
-       return $query->whereHas('category', function ($q) use ($categories){
-            $q->whereIn('id',$categories);
+        return $query->whereHas('category', function ($q) use ($categories) {
+            $q->whereIn('id', $categories);
         });
     }
 }

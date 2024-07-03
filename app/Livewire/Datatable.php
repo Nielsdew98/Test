@@ -11,15 +11,18 @@ use Livewire\WithPagination;
 class Datatable extends Component
 {
     use WithPagination;
+
     #[Url]
     public $search = '';
 
     #[Url]
     public $categories = [];
+
     public function updatedSearch()
     {
         $this->resetPage();
     }
+
     public function render()
     {
         return view('livewire.datatable', [

@@ -13,6 +13,7 @@ use Tests\TestCase;
 class DatatableTest extends TestCase
 {
     use refreshDatabase, WithFaker;
+
     /** @test */
     public function display_all_recipes()
     {
@@ -24,6 +25,7 @@ class DatatableTest extends TestCase
                 return count($recipes) == 10;
             });
     }
+
     /** @test */
     public function display_all_recipes_for_category()
     {
@@ -42,8 +44,8 @@ class DatatableTest extends TestCase
     /** @test */
     public function display_all_recipes_for_search()
     {
-       Recipe::factory()->create(['is_hidden' => false, 'name' => 'test']);
-       Recipe::factory()->create(['is_hidden' => false, 'name' => 'random']);
+        Recipe::factory()->create(['is_hidden' => false, 'name' => 'test']);
+        Recipe::factory()->create(['is_hidden' => false, 'name' => 'random']);
 
         Livewire::withQueryParams(['search' => 'tes'])
             ->test(Datatable::class)

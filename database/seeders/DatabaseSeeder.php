@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
         //step 1 create categories
         $categories = Category::factory(10)->create();
 
-        for ($i = 0; $i < 5; $i++){
-          Recipe::factory()
-              ->hasIngredients(random_int(1,10))
-              ->count(100)
-              ->create([
-                  'category_id' => fake()->randomElement($categories)->id
-              ]);
+        for ($i = 0; $i < 5; $i++) {
+            Recipe::factory()
+                ->hasIngredients(random_int(1, 10))
+                ->count(100)
+                ->create([
+                    'category_id' => fake()->randomElement($categories)->id,
+                ]);
         }
     }
 }
